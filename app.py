@@ -23,7 +23,7 @@ st.subheader("Summarize Any URL (YouTube or Website)")
 # Sidebar Configuration
 with st.sidebar:
     st.title("Settings")
-    groq_api_key = st.text_input("Groq API Key", value="", type="password")
+    api_key = st.text_input("Groq API Key", value="", type="password")
     model_name = st.selectbox("Select LLM Model:", ["Gemma2-9b-It", "Llama3-8b-8192", "Llama3-70b-8192"])
     st.markdown("---")
     st.markdown("**Powered by [LangChain](https://github.com/langchain-ai/streamlit-agent)**")
@@ -32,7 +32,7 @@ with st.sidebar:
 generic_url = st.text_input("Enter a URL (YouTube or Website)", placeholder="https://example.com", label_visibility="visible")
 
 # Initialize LLM
-llm = ChatGroq(model=model_name, groq_api_key=groq_api_key)
+llm = ChatGroq(model=model_name, groq_api_key=api_key)
 
 # Summarization Prompt
 prompt_template = """
@@ -43,7 +43,7 @@ prompt = PromptTemplate(template=prompt_template, input_variables=["text"])
 
 # Summarization Button
 if st.button("Summarize the Content"):
-    if not groq_api_key.strip() or not generic_url.strip():
+    if not api_key.strip() or not generic_url.strip():
         st.error("❌ Please provide the required information to proceed.")
     elif not validators.url(generic_url):
         st.error("⚠️ Invalid URL! Please enter a valid YouTube or website URL.")
