@@ -1,0 +1,8 @@
+langchain
+python-dotenv
+ipykernel
+langchain-community
+langchain_chroma
+langchain-groq
+validators==0.28.1
+youtube_transcript_api
