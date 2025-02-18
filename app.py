@@ -32,7 +32,7 @@ with st.sidebar:
 generic_url = st.text_input("Enter a URL (YouTube or Website)", placeholder="https://example.com", label_visibility="visible")
 
 # Initialize LLM
-llm = ChatGroq(model=model_name, groq_api_key=api_key)
+# llm = ChatGroq(model=model_name, groq_api_key=api_key)
 
 # Summarization Prompt
 prompt_template = """
@@ -49,6 +49,9 @@ if st.button("Summarize the Content"):
         st.error("⚠️ Invalid URL! Please enter a valid YouTube or website URL.")
     else:
         try:
+            # Initialize LLM
+            llm = ChatGroq(model=model_name, groq_api_key=api_key)
+               
             with st.spinner("🔍 Extracting and summarizing content..."):
                 # Load data from the source
                 docs = []
